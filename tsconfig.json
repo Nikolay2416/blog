@@ -18,9 +18,45 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noUncheckedIndexedAccess": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@api/*": [
+        "./api/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@pages/*": [
+        "./pages/*"
+      ],
+      "@router/*": [
+        "./router/*"
+      ],
+      "@store/*": [
+        "./store/*"
+      ],
+      "@config/*": [
+        "./config/*"
+      ],
+      "@interface/*": [
+        "./interface/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
+      "@hooks/*": [
+        "./hooks/*"
+      ]
+    }
   },
   "include": [
-    "src"
+    "src",
+    ".eslintrc.js",
+    "craco.config.js"
   ]
 }

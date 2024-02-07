@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import { store } from '@store/store';
+import { IS_REACT_STRICT_MODE } from '@config/app';
+import { App } from './App';
+
+import 'styles/index.scss';
+
+const ReactStrictModeWrapper: FC<{
+  isStrictModeEnable: boolean;
+  children?: React.ReactNode;
+}> = ({ children, isStrictModeEnable }) => {
+  return <>{isStrictModeEnable ? <React.StrictMode>{children}</React.StrictMode> : children}</>;
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ReactStrictModeWrapper isStrictModeEnable={IS_REACT_STRICT_MODE}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </ReactStrictModeWrapper>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
